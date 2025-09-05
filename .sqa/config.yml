@@ -1,0 +1,18 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+sqa_criteria:
+  QC.Uni:
+    repos:
+      this_repo:
+        commands:
+        - apt-get update && apt-get install -y cmake
+        - ctest -N --test-dir build
+        - ctest --test-dir build --output-on-failure
+        container: qc.uni_seedy-cerulean-magpie
+timeout: 5400
